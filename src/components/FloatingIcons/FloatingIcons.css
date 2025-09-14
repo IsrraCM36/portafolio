@@ -1,0 +1,130 @@
+.floating-icons {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.floating-icon {
+  position: absolute;
+  opacity: 0;
+  animation: float 25s ease-in-out infinite;
+  transition: all 0.3s ease;
+  z-index: 25;
+}
+
+.floating-icon:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/* Posiciones alrededor de la imagen */
+.floating-icon--top-right {
+  top: 10%;
+  right: 15%;
+  animation-duration: 22s;
+}
+
+.floating-icon--top-left {
+  top: 15%;
+  left: 10%;
+  animation-duration: 28s;
+}
+
+.floating-icon--bottom-right {
+  bottom: 20%;
+  right: 10%;
+  animation-duration: 24s;
+}
+
+.floating-icon--bottom-left {
+  bottom: 15%;
+  left: 15%;
+  animation-duration: 30s;
+}
+
+.floating-icon--left {
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  animation-duration: 26s;
+}
+
+.floating-icon--right {
+  top: 40%;
+  right: 5%;
+  animation-duration: 32s;
+}
+
+/* Animación de flotación */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+  50% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+  75% {
+    transform: translateY(-15px) rotate(1deg);
+  }
+}
+
+/* Animación de entrada */
+.floating-icon {
+  animation: fadeInFloat 1.2s ease-out forwards, float 20s ease-in-out infinite 1.2s;
+}
+
+@keyframes fadeInFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) scale(0.8);
+  }
+  100% {
+    opacity: 0.9;
+    transform: translateY(0px) scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .floating-icon {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .floating-icon--top-right {
+    top: 5%;
+    right: 10%;
+  }
+  
+  .floating-icon--top-left {
+    top: 8%;
+    left: 5%;
+  }
+  
+  .floating-icon--bottom-right {
+    bottom: 15%;
+    right: 5%;
+  }
+  
+  .floating-icon--bottom-left {
+    bottom: 10%;
+    left: 10%;
+  }
+  
+  .floating-icon--left {
+    top: 45%;
+    left: 2%;
+  }
+  
+  .floating-icon--right {
+    top: 35%;
+    right: 2%;
+  }
+}
