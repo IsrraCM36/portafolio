@@ -55,7 +55,7 @@ export default function Principal() {
         {/* ============================================ */}
         {/* SECCIÓN 2: HABILIDADES */}
         {/* ============================================ */}
-        <section id="skills">
+        <section id="skills" className="min-h-screen py-20">
           <Skills />
         </section>
         {/* ============================================ */}
@@ -117,7 +117,7 @@ export default function Principal() {
         {/* ============================================ */}
         {/* SECCIÓN 4: PROYECTOS */}
         {/* ============================================ */}
-        <section id="projects">
+        <section id="projects" className="min-h-screen py-20">
           <Proyects />
         </section>
         {/* ============================================ */}

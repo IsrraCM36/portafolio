@@ -33,7 +33,7 @@ const Skills = () => {
     }, []);
  
     return (
-        <div ref={skillsRef} className="w-full max-w-7xl mx-auto px-4 py-8">
+        <div ref={skillsRef} className="w-full max-w-7xl mx-auto px-4 py-8 min-h-screen flex flex-col justify-center">
             <div className="mb-8 text-center flex flex-col items-center">
                 <BlurText
                     text="Habilidades Técnicas"
