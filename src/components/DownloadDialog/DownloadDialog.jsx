@@ -59,7 +59,7 @@ const DownloadDialog = ({ isOpen, onClose, onComplete }) => {
   return (
     <div className="fixed inset-0 z-50" aria-hidden={!isOpen} role="presentation">
       <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={onClose} />
-      <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4" role="dialog" aria-modal="true">
+      <div className="absolute top-3 left-1/2 -translate-x-1/2 sm:bottom-4 sm:right-4 sm:top-auto sm:left-auto sm:translate-x-0" role="dialog" aria-modal="true">
         <div className="relative w-[92vw] max-w-xs rounded-2xl border border-white/15 bg-white/5 backdrop-blur-xl shadow-2xl shadow-black/30 ring-1 ring-white/10">
           <div className="p-3.5">
             <div className="mb-2 flex items-center justify-between gap-2">

@@ -50,7 +50,7 @@ const ProfileSection = () => {
               <div className="inline-flex items-center gap-2 md:gap-3 px-3 py-2 md:px-4 md:py-2 bg-gray-800/30 border border-gray-700 rounded-full">
                 <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-blue-500 rounded-full" />
                 <span className="text-xs tracking-wider uppercase">
-                  Ingeniero de Software — Desarrollador Full Stack Jr
+                  Desarrollador Full Stack
                 </span>
               </div>
             </div>

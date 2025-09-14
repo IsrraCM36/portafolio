@@ -13,16 +13,14 @@ const projects = [
     title: "Colaboracion en Medicinas Ultra",
     description: "Durante mi estancia en Clever Cloud participé en el desarrollo de la web de Medicinas Ultra, colaborando en el diseño de la interfaz, la organización del catálogo de productos y la mejora del buscador para optimizar la accesibilidad y la experiencia del usuario.",
     image: Clever,
-    technologies: ["Vue.js", "JavaScript", "PHP", "Bootstrap"],
+    technologies: ["Vue.js", "JavaScript", "Bootstrap"],
     liveUrl: "https://www.medicinasultra.com/inicio"
   },
   {
     title: "FortiSiip",
     description: "Sistema de gestión de personal en ASP.NET y C# que permite administrar empleados, generar informes, gestionar vacaciones y evaluar desempeño. Usa MySQL en Linux y aumenta la eficiencia administrativa en un 30 %.",
     image: Fortisiip,
-    technologies: ["Visual Studio", "C#", "SQL Server"],
-    githubUrl: "https://github.com/tuusuario/chat-app",
-    liveUrl: "https://tuchat.com"
+    technologies: ["Visual Studio", "C#", "SQL Server", "Linux", "ASP.NET"],
   },
 
   {

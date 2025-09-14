@@ -22,6 +22,58 @@ const Navbar = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Scroll-based navigation highlighting
+  useEffect(() => {
+    const sections = ['home', 'skills', 'experience', 'projects', 'education', 'about'];
+    
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px', // Trigger when section is 20% from top
+      threshold: 0.1
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const sectionId = entry.target.id;
+          // Map section IDs to nav item IDs
+          const navItemMap = {
+            'home': 'home',
+            'skills': 'skills',
+            'experience': 'experience',
+            'projects': 'projects',
+            'education': 'education',
+            'about': 'profile'
+          };
+          
+          const navItemId = navItemMap[sectionId];
+          if (navItemId) {
+            setActiveItem(navItemId);
+          }
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+
+    // Observe all sections
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => {
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
+    };
+  }, []);
+
   const navItems = [
     {
       id: 'home',

@@ -11,11 +11,14 @@ const TerminalCard = ({ title, skills, delay = 0, shouldAnimate = false }) => {
                 setShowContent(true);
             }, delay);
             return () => clearTimeout(timer);
+        } else {
+            // Reset animation state when shouldAnimate becomes false
+            setShowContent(false);
         }
     }, [delay, shouldAnimate]);
 
     return (
-        <div className="bg-black text-white p-6 w-96 h-[32rem] rounded-lg border border-gray-800 select-none transition-all duration-300 ease-in-out shadow-2xl overflow-hidden">
+        <div className="bg-black text-white p-4 sm:p-6 w-full sm:w-80 lg:w-96 h-auto min-h-[28rem] sm:h-[32rem] rounded-lg border border-gray-800 select-none transition-all duration-300 ease-in-out shadow-2xl overflow-hidden">
             {/* Header con controles de terminal */}
             <div className="flex items-center justify-center mb-6 relative">
                 <div className="absolute left-0 flex items-center gap-2">

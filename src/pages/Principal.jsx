@@ -124,7 +124,7 @@ export default function Principal() {
         {/* SECCIÓN 5: FORMACIÓN ACADÉMICA */}
         {/* ============================================ */}
         <section id="education">
-          <div className="w-full mt-20 flex justify-center px-4">
+          <div className="w-full mt-0 flex justify-center px-4">
             <div className="w-full max-w-5xl flex flex-col items-center">
               
               {/* Encabezado de la sección */}
