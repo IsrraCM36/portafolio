@@ -53,20 +53,14 @@ export default function Principal() {
         </section>
 
         {/* ============================================ */}
-        {/* SECCIÓN 2: HABILIDADES */}
-        {/* ============================================ */}
-        <section id="skills">
-          <Skills />
-        </section>
-        {/* ============================================ */}
-        {/* SECCIÓN 3: EXPERIENCIA PROFESIONAL */}
+        {/* SECCIÓN 2: EXPERIENCIA PROFESIONAL */}
         {/* ============================================ */}
         <section id="experience">
-          <div className="w-full mt-30 flex justify-center px-4">
+          <div className="w-full mt-0 flex justify-center px-4">
             <div className="w-full max-w-5xl flex flex-col items-center">
               
               {/* Encabezado de la sección */}
-              <div className="mb-10 mt-20 text-center flex flex-col items-center">
+              <div className="mb-10 mt-10 text-center flex flex-col items-center">
                 <BlurText
                   text="Mi experiencia profesional"
                   delay={150}
@@ -86,9 +80,9 @@ export default function Principal() {
               {/* Contador de años de experiencia */}
               <div className="mb-8 mt-6 text-center">
                 <div 
-                  className="inline-flex items-center justify-center gap-1 px-6 py-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-lg opacity-0 translate-y-4 transition-all duration-700 ease-out delay-[1200ms] animate-[slideUp_0.8s_ease-out_1.2s_forwards]" 
+                  className="inline-flex items-center justify-center gap-1 px-6 py-4 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 shadow-lg opacity-0 translate-y-4 transition-all duration-300 ease-out delay-[200ms] animate-[slideUp_0.3s_ease-out_0.2s_forwards]" 
                   style={{
-                    animation: 'slideUp 0.8s ease-out 1.2s forwards',
+                    animation: 'slideUp 0.3s ease-out 0.2s forwards',
                     animationFillMode: 'forwards'
                   }}
                 >
@@ -97,8 +91,8 @@ export default function Principal() {
                     from={0}
                     to={2}
                     direction="up"
-                    duration={1}
-                    delay={1.1}
+                    duration={0.5}
+                    delay={0.3}
                     fontSize="text-4xl"
                     color="text-white"
                     fontWeight="font-bold"
@@ -115,16 +109,24 @@ export default function Principal() {
         </section>
 
         {/* ============================================ */}
-        {/* SECCIÓN 4: PROYECTOS */}
+        {/* SECCIÓN 3: PROYECTOS */}
         {/* ============================================ */}
         <section id="projects">
           <Proyects />
+        </section>
+        
+
+        {/* ============================================ */}
+        {/* SECCIÓN 4: HABILIDADES */}
+        {/* ============================================ */}
+        <section id="skills">
+          <Skills />
         </section>
         {/* ============================================ */}
         {/* SECCIÓN 5: FORMACIÓN ACADÉMICA */}
         {/* ============================================ */}
         <section id="education">
-          <div className="w-full mt-20 flex justify-center px-4">
+          <div className="w-full mt-0 flex justify-center px-4">
             <div className="w-full max-w-5xl flex flex-col items-center">
               
               {/* Encabezado de la sección */}

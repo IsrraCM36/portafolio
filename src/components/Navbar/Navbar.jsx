@@ -8,11 +8,24 @@ import {
   Moon, 
   Sun 
 } from 'lucide-react';
+import { useLenisContext } from '@/context/LenisContext';
+import { useActiveSection } from '@/hooks/useActiveSection';
 
 const Navbar = () => {
-  const [activeItem, setActiveItem] = useState('home');
   const [isDarkMode, setIsDarkMode] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  
+  // Obtener funciones de Lenis del contexto
+  const { scrollTo } = useLenisContext();
+
+  // Secciones para monitorear (en el orden correcto según la página)
+  const sections = ['home', 'experience', 'projects', 'skills', 'education', 'about'];
+  
+  // Detectar sección activa automáticamente
+  const activeSection = useActiveSection(sections, {
+    rootMargin: '-10% 0px -70% 0px',
+    threshold: 0.3
+  });
 
   // Animation on mount
   useEffect(() => {
@@ -30,12 +43,6 @@ const Navbar = () => {
       section: 'home'
     },
     {
-      id: 'skills',
-      icon: Zap,
-      tooltip: 'Habilidades',
-      section: 'skills'
-    },
-    {
       id: 'experience',
       icon: Briefcase,
       tooltip: 'Experiencia',
@@ -46,6 +53,12 @@ const Navbar = () => {
       icon: FolderOpen,
       tooltip: 'Proyectos',
       section: 'projects'
+    },
+    {
+      id: 'skills',
+      icon: Zap,
+      tooltip: 'Habilidades',
+      section: 'skills'
     },
     {
       id: 'education',
@@ -66,17 +79,13 @@ const Navbar = () => {
     if (itemId === 'theme') {
       setIsDarkMode(!isDarkMode);
     } else {
-      setActiveItem(itemId);
-      
-      // Smooth scroll to section
+      // Usar Lenis para smooth scroll a la sección
       if (sectionId) {
-        const element = document.getElementById(sectionId);
-        if (element) {
-          element.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-        }
+        scrollTo(`#${sectionId}`, {
+          duration: 1.5,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          offset: -50 // Pequeño offset para no cubrir el contenido con la navbar
+        });
       }
     }
   };
@@ -106,17 +115,19 @@ const Navbar = () => {
       <div className="flex flex-col gap-[15px] items-center md:max-lg:flex-row md:max-lg:gap-[25px] max-md:flex-row max-md:gap-[12px]">
         {navItems.map((item, index) => {
           const IconComponent = item.icon;
-          const isActive = activeItem === item.id;
+          const isActive = activeSection === item.section;
           
           return (
             <div
               key={item.id}
               className={`
                 dock-item group relative cursor-pointer
-                transition-transform duration-200 ease-in-out
+                transition-all duration-300 ease-in-out
                 hover:scale-100
                 /* Mobile: Smaller touch targets */
                 max-md:p-1
+                ${isActive ? 'opacity-100' : 'opacity-60'}
+                hover:opacity-100
               `}
               onClick={() => handleItemClick(item.id, item.section)}
             >
@@ -124,25 +135,36 @@ const Navbar = () => {
               <div 
                 className={`
                   w-[35px] h-[35px] rounded-full flex justify-center items-center
-                  bg-sky-100/10 transition-all duration-200 ease-in-out
+                  bg-sky-100/10 transition-all duration-300 ease-in-out
                   shadow-[0_5px_15px_rgba(0,0,0,0.2)]
                   ${item.isThemeToggle && isDarkMode ? 'text-yellow-400' : 'text-white'}
                   
+                  /* Efecto de opacidad basado en estado activo */
+                  ${isActive ? 'opacity-100' : 'opacity-60'}
+                  
                   /* Desktop hover effects */
                   lg:group-hover:bg-white/20 lg:group-hover:scale-[1.2] lg:group-hover:translate-x-[22px]
+                  lg:group-hover:opacity-100
                   
                   /* Tablet hover effects */
                   md:max-lg:group-hover:bg-white/20 md:max-lg:group-hover:scale-[1.15] md:max-lg:group-hover:-translate-y-[6px]
+                  md:max-lg:group-hover:opacity-100
                   
                   /* Mobile: No hover effects, smaller size */
                   max-md:w-[32px] max-md:h-[32px] max-md:active:scale-95
+                  max-md:active:opacity-100
                 `}
               >
                 {item.isProfile ? (
                   <img 
                     src="/jcm_logo.png" 
                     alt="Perfil" 
-                    className="w-[110%] h-[110%] object-cover rounded-full scale-110 max-md:w-[100%] max-md:h-[100%] max-md:scale-100"
+                    className={`
+                      w-[110%] h-[110%] object-cover rounded-full scale-110 max-md:w-[100%] max-md:h-[100%] max-md:scale-100
+                      transition-all duration-300 ease-in-out
+                      ${isActive ? 'opacity-100' : 'opacity-60'}
+                      group-hover:opacity-100
+                    `}
                   />
                 ) : (
                   <IconComponent 
@@ -151,29 +173,14 @@ const Navbar = () => {
                       transition-all duration-300 ease-in-out
                       ${item.isThemeToggle && isDarkMode ? 'text-yellow-400' : 'text-white'}
                       max-md:w-[18px] max-md:h-[18px]
+                      ${isActive ? 'opacity-100' : 'opacity-60'}
+                      group-hover:opacity-100
                     `}
                   />
                 )}
               </div>
 
-              {/* Active Indicator */}
-              {isActive && !item.isThemeToggle && (
-                <div 
-                  className="
-                    /* Desktop: Bottom indicator */
-                    absolute -bottom-2.5 left-1/2 -translate-x-1/2
-                    w-1.5 h-1.5 bg-white rounded-full
-                    opacity-100 scale-[1.2]
-                    transition-all duration-200 ease-in-out
-                    
-                    /* Tablet: Top indicator */
-                    md:max-lg:-top-3 md:max-lg:bottom-auto md:max-lg:w-2 md:max-lg:h-2
-                    
-                    /* Mobile: Bottom indicator, smaller */
-                    max-md:w-1 max-md:h-1 max-md:-bottom-2
-                  "
-                />
-              )}
+
 
               {/* Tooltip */}
               <span 

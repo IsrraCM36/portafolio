@@ -1,38 +1,9 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import BlurText from '@components/BlurText/BlurText';
 import ProjectCard from './components/ProjectCard';
-import CasiSat from '@assets/img/casisatv2.png'
-import Fortisiip from '@assets/img/proyect2.png'
-import Clever from '@assets/img/clever.png'
+import { projects } from './data/projectsData';
 import { ArrowRight } from "lucide-react"
-
-const projects = [
-
-  {
-    title: "Colaboracion en Medicinas Ultra",
-    description: "Durante mi estancia en Clever Cloud participé en el desarrollo de la web de Medicinas Ultra, colaborando en el diseño de la interfaz, la organización del catálogo de productos y la mejora del buscador para optimizar la accesibilidad y la experiencia del usuario.",
-    image: Clever,
-    technologies: ["Vue.js", "JavaScript", "PHP", "Bootstrap"],
-    liveUrl: "https://www.medicinasultra.com/inicio"
-  },
-  {
-    title: "FortiSiip",
-    description: "Sistema de gestión de personal en ASP.NET y C# que permite administrar empleados, generar informes, gestionar vacaciones y evaluar desempeño. Usa MySQL en Linux y aumenta la eficiencia administrativa en un 30 %.",
-    image: Fortisiip,
-    technologies: ["Visual Studio", "C#", "SQL Server"],
-    githubUrl: "https://github.com/tuusuario/chat-app",
-    liveUrl: "https://tuchat.com"
-  },
-
-  {
-    title: "CasiSAT",
-    description: "App de gestión de gastos personales en Flutter y Firebase que permite registrar gastos, ver estadísticas en gráficos y exportar reportes en PDF o Microsoft Excel. Incluye autenticación segura y almacenamiento en la nube.",
-    image: CasiSat,
-    technologies: ["Flutter", "FireBase", "Dart"],
-    githubUrl: "https://github.com/IsrraDex36/casi-sat-app-m-vil"
-  }
-];
 
 const Proyects = () => {
   const navigate = useNavigate();
@@ -40,6 +11,15 @@ const Proyects = () => {
   const handleViewMoreProjects = () => {
     navigate('/proyectos');
   };
+
+  const projectsList = useMemo(() => 
+    projects.map((project, index) => (
+      <ProjectCard
+        key={index}
+        {...project}
+      />
+    )), [projects]
+  );
 
   return (
     <div className='py-20 min-h-screen flex flex-col items-center justify-start'>
@@ -62,12 +42,7 @@ const Proyects = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 place-items-center">
-          {projects.map((project, index) => (
-            <ProjectCard
-              key={index}
-              {...project}
-            />
-          ))}
+          {projectsList}
         </div>
         <div className="flex justify-center">
            <button 
