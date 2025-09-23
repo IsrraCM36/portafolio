@@ -22,7 +22,7 @@ const Proyects = () => {
   );
 
   return (
-    <div className='py-20 min-h-screen flex flex-col items-center justify-start'>
+    <div className='py-20 min-h-screen flex flex-col items-center justify-center'>
       <div className="container mx-auto px-4 max-w-7xl">
         <div className=" text-center mb-16">
           <BlurText

@@ -1,20 +1,20 @@
 export const itemExperience = [ 
   {
-    title: "Desarrollador Front-end Jr",
+    title: "Desarrollador Front-end",
     company: "WebDecero",
     date: "Junio 2025 - Agosto 2025",
     description: 
       "Colaboré en el desarrollo de interfaces web con React, creando componentes reutilizables, implementando formularios dinámicos con React Hook Form y consumiendo APIs REST (Axios/Fetch). Refactoricé código legado aplicando patrones como MVC y modernizando el stack con JavaScript (ES6+), HTML5 y CSS3. Trabajé con GitHub Desktop para control de versiones, coordinándome mediante Microsoft Teams y utilizando Postman para pruebas de endpoints durante el desarrollo.",
   },
   {
-    title: "Desarrollador Full Stack Jr",
+    title: "Desarrollador Full Stack",
     company: "Clever Cloud",
     date: "Septiembre 2024 - Junio 2025",
     description: 
       "Formé parte del desarrollo de un ERP corporativo, creando nuevas funcionalidades con Vue.js en el frontend y JavaScript/PHP en el backend, junto con MySQL para la persistencia de datos. Optimizé procesos, resolví incidencias técnicas y brindé soporte continuo a las historias de usuario durante cada sprint, aplicando metodologías ágiles (Scrum con Jira) y gestionando versiones con Git. Contribuí tanto a la evolución de módulos existentes como a la creación de nuevos, reforzando mis habilidades de trabajo en equipo y mejora continua.",
   },
   {
-    title: "Desarrollador Jr",
+    title: "Desarrollador .NET",
     company: "Industrias Maquinsa S.A de C.V.",
     date: "Mayo 2023 - Agosto 2024",
     description: 

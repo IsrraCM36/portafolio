@@ -35,6 +35,131 @@ const Navbar = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  // Scroll-based navigation highlighting
+  useEffect(() => {
+    const sections = ['home', 'skills', 'experience', 'projects', 'education', 'about'];
+    
+    // Responsive observer options based on screen size
+    const getObserverOptions = () => {
+      const isMobile = window.innerWidth < 768;
+      const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+      
+      if (isMobile) {
+        // Mobile: Very sensitive detection
+        return {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0
+        };
+      } else if (isTablet) {
+        // Tablet: Sensitive detection
+        return {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0
+        };
+      } else {
+        // Desktop: Standard detection
+        return {
+          root: null,
+          rootMargin: '0px',
+          threshold: 0
+        };
+      }
+    };
+
+    const observerCallback = (entries) => {
+      let bestSection = null;
+      let bestScore = -1;
+
+      entries.forEach((entry) => {
+        const rect = entry.boundingClientRect;
+        const viewportHeight = window.innerHeight;
+        const sectionId = entry.target.id;
+        
+        // Check if any part of the section is visible
+        const isVisible = rect.top < viewportHeight && rect.bottom > 0;
+        
+        if (isVisible) {
+          // Calculate how much of the section is in viewport
+          const visibleTop = Math.max(0, rect.top);
+          const visibleBottom = Math.min(viewportHeight, rect.bottom);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          const visibilityRatio = visibleHeight / viewportHeight;
+          
+          // Prioritize sections that are more centered in viewport
+          const sectionCenter = rect.top + rect.height / 2;
+          const viewportCenter = viewportHeight / 2;
+          const distanceFromCenter = Math.abs(sectionCenter - viewportCenter);
+          const centerScore = Math.max(0, 1 - distanceFromCenter / (viewportHeight / 2));
+          
+          // Combined score with higher weight on visibility
+          const score = visibilityRatio * 0.8 + centerScore * 0.2;
+          
+          if (score > bestScore) {
+            bestScore = score;
+            bestSection = sectionId;
+          }
+        }
+      });
+
+      if (bestSection) {
+        // Map section IDs to nav item IDs
+        const navItemMap = {
+          'home': 'home',
+          'skills': 'skills',
+          'experience': 'experience',
+          'projects': 'projects',
+          'education': 'education',
+          'about': 'profile'
+        };
+        
+        const navItemId = navItemMap[bestSection];
+        if (navItemId && navItemId !== activeItem) {
+          setActiveItem(navItemId);
+        }
+      }
+    };
+
+    let observer = new IntersectionObserver(observerCallback, getObserverOptions());
+
+    // Observe all sections
+    const observeSections = () => {
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          observer.observe(element);
+        }
+      });
+    };
+
+    observeSections();
+
+    // Re-initialize observer on window resize for responsive behavior
+    const handleResize = () => {
+      // Disconnect current observer
+      observer.disconnect();
+      
+      // Create new observer with updated options
+      observer = new IntersectionObserver(observerCallback, getObserverOptions());
+      
+      // Re-observe all sections
+      observeSections();
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      sections.forEach((sectionId) => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
+    };
+  }, []);
+
   const navItems = [
     {
       id: 'home',

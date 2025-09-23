@@ -111,7 +111,7 @@ export default function Principal() {
         {/* ============================================ */}
         {/* SECCIÓN 3: PROYECTOS */}
         {/* ============================================ */}
-        <section id="projects">
+        <section id="projects" className="min-h-screen py-20">
           <Proyects />
         </section>
         
@@ -126,6 +126,7 @@ export default function Principal() {
         {/* SECCIÓN 5: FORMACIÓN ACADÉMICA */}
         {/* ============================================ */}
         <section id="education">
+          <div className="w-full mt-0 flex justify-center px-4">
           <div className="w-full mt-0 flex justify-center px-4">
             <div className="w-full max-w-5xl flex flex-col items-center">
               

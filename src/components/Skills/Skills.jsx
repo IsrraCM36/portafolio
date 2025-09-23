@@ -16,8 +16,8 @@ const Skills = () => {
                 }
             },
             {
-                threshold: 0.3, 
-                rootMargin: '0px 0px -100px 0px' 
+                threshold: window.innerWidth < 768 ? 0.1 : 0.3, // Threshold más bajo en móvil
+                rootMargin: window.innerWidth < 768 ? '0px 0px -50px 0px' : '0px 0px -100px 0px' // Menos margen en móvil
             }
         );
 
@@ -53,7 +53,7 @@ const Skills = () => {
 
             
             
-            <div className="flex justify-center flex-wrap gap-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-items-center">
                 {skillsData.map((category, index) => (
                     <TerminalCard 
                         key={index}

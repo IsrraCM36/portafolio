@@ -5,6 +5,13 @@ const useTypewriter = (text, speed = 80, shouldStart = false) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     useEffect(() => {
+        if (!shouldStart) {
+            // Reset when animation should stop
+            setDisplayText('');
+            setCurrentIndex(0);
+            return;
+        }
+
         if (shouldStart && currentIndex < text.length) {
             const timeout = setTimeout(() => {
                 setDisplayText(prev => prev + text[currentIndex]);
