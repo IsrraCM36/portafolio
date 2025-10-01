@@ -27,9 +27,9 @@ export default function Timeline({ items = [] }) {
                 <div className="grid gap-4 p-4 sm:p-5 md:p-6 md:grid-cols-[minmax(200px,260px)_1fr]">
                   {/* Columna izquierda */}
                   <div className="space-y-2 min-w-0">
-                    <h3 className="text-[16px] sm:text-[17px] font-semibold text-yellow-200 break-words">
+                    <h2 className="text-[16px] sm:text-[17px] font-semibold text-yellow-200 break-words">
                       {item.title}
-                    </h3>
+                    </h2>
 
                     {item.company ? (
                       <div className="flex items-center gap-2 text-sm sm:text-[15px] font-semibold text-gray-100">
